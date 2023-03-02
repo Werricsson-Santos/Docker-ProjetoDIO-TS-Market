@@ -3,7 +3,7 @@ import { sequelize } from "../database";
 
 interface CategoriesInstance extends Model {
     id: number,
-    name: string
+    name: string,
 }
 
 export const Category = sequelize.define<CategoriesInstance>(
@@ -19,6 +19,6 @@ export const Category = sequelize.define<CategoriesInstance>(
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
-        }
+        },
     }
-)
+);

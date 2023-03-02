@@ -1,0 +1,61 @@
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    min-height: 75vh;
+}
+
+.main-content h1 {
+    flex-basis: 100%; /* Definindo a largura do item principal (título) */
+    text-align: center;
+}
+
+.categories {
+    flex-basis: calc((100% - 500px - 20px) / 3); /* Definindo a largura dos itens secundários (categorias) */
+    margin: 10px; /* Adicionando margem para separar os itens */
+    flex-grow: 1;
+    min-width: 180px;
+    background-color: #042a53;
+    height: 200px;
+    overflow: auto;
+    text-align: center;
+    position: relative;
+    padding: 1rem;
+    border-radius: 1rem ;
+}
+.categories::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+.categories::-webkit-scrollbar-thumb {
+    display: none;
+}
+.categories h3 {
+    border-bottom: 1px solid #666262;
+    padding-bottom: 1rem;
+}
+.categories ul  {
+    padding: 2rem 1rem;
+}
+.categories li {
+    padding: .2rem;
+}
+
+#edit {
+    position: absolute;
+    right: 0;
+    margin-right: 2rem;
+    font-size: x-large;
+}
+
+#delete {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #ff0040;
+    margin-right: 2rem;
+    margin-bottom: .8rem;
+    font-size: x-large;
+}

@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  backend:
+    build: .
+    image: node:19
+    restart: always
+    depends_on:
+      - "db"
+    ports:
+      - 5000:5000
+    working_dir: /usr/app/backend
+    environment:
+      DATABASE_URL: "postgres://postgres:postgres@db:5432/ts-market-storage"
+      NODE_ENV: "storage"
+    command: npm run dev
+    networks:
+      - api-sequelize
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - 5432:5432
+    networks:
+      - api-sequelize
+
+
+  frontend:
+    build: .
+    image: node:19
+    ports:
+      - 3000:3000
+    restart: always
+    working_dir: /usr/app/frontend/ts-market
+    command: npm run dev
+    depends_on:
+      - backend
+    networks:
+      - api-sequelize
+    expose:
+      - 3000
+
+
+networks:
+  api-sequelize:
+    driver: bridge

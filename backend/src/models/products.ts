@@ -1,4 +1,4 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, FloatDataType, Model } from "sequelize";
 import { sequelize } from "../database";
 
 interface ProductInstance extends Model {
@@ -7,7 +7,7 @@ interface ProductInstance extends Model {
     description: Text
     categoryId: number
     quantity: number
-    price: Float64Array
+    price: FloatDataType
 }
 
 export const Product = sequelize.define<ProductInstance>(
