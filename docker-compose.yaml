@@ -16,6 +16,8 @@ services:
     command: npm run dev
     networks:
       - api-sequelize
+    expose:
+      - 5000
 
   db:
     image: postgres
