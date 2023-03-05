@@ -3,21 +3,19 @@ version: '3'
 services:
   backend:
     build: .
-    image: node:19
     restart: always
     depends_on:
       - "db"
     ports:
-      - 5000:5000
+      - 3000:3000
     working_dir: /usr/app/backend
     environment:
       DATABASE_URL: "postgres://postgres:postgres@db:5432/ts-market-storage"
-      NODE_ENV: "storage"
     command: npm run dev
+    volumes:
+      - ./backend/src:/usr/app/backend/src
     networks:
       - api-sequelize
-    expose:
-      - 5000
 
   db:
     image: postgres
@@ -32,18 +30,19 @@ services:
 
   frontend:
     build: .
-    image: node:19
     ports:
-      - 3000:3000
+      - 5173:5173
     restart: always
     working_dir: /usr/app/frontend/ts-market
     command: npm run dev
     depends_on:
       - backend
+    volumes:
+      - ./frontend/ts-market/src:/usr/app/frontend/ts-market/src
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
     networks:
       - api-sequelize
-    expose:
-      - 3000
 
 
 networks:

@@ -20,10 +20,3 @@ RUN npm install
 
 # Copia todo o restante dos arquivos do frontend para o diretório de trabalho /app/frontend
 COPY frontend/ts-market/ .
-
-# Expõe as portas 5000 e 3000
-EXPOSE 5000
-EXPOSE 3000
-
-# Inicia o backend e o frontend simultaneamente
-CMD ["npm", "run", "dev"]

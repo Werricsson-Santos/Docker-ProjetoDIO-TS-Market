@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev src/app.ts"
+    "create": "sequelize db:create",
+    "migrate": "sequelize db:migrate",
+    "seeders": "sequelize db:seed:all",
+    "dev": "npm run create && npm run migrate && npm run seeders && ts-node-dev src/app.ts"
   },
   "keywords": [],
   "author": "",
