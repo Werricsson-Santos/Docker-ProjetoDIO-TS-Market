@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 import { MdDeleteForever } from 'react-icons/md'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import SubmitButton from '../../components/form/SubmitButton'
@@ -21,13 +21,21 @@ const Categories = () => {
 
     
 
-    const handleDelete = (id: number) => () => {
+    const handleDelete = (id: number) => {
         axios.delete(`http://localhost:3000/products/${id}`)
-        .then(response => {
-            console.log(response.data);
-            nav('/');
-        })
-        .catch(error => console.error(error));
+            .then(response => {
+                console.log(response.data);
+                nav('/');
+            })
+            .catch(error => console.error(error));
+    }
+
+    const handleDeleteClick = (item: Product) => {
+        if (typeof item.id !== 'number') {
+            throw new Error('O id do item é inválido');
+        } else {
+            handleDelete(item.id);
+        }
     }
 
 
@@ -54,7 +62,10 @@ const Categories = () => {
                             </li>
                             )}
                         </ul>
-                        <MdDeleteForever   id='delete' onClick={ () => item.id && handleDelete(item.id)}/>
+                        <MdDeleteForever
+                        id='delete'
+                        onClick={() => handleDeleteClick(item)}
+                        />
                     </div>
                 ))}
         </div>
